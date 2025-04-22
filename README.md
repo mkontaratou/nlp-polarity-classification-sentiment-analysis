@@ -20,7 +20,7 @@ We utilized Huggingface’s `transformers` library to load and tokenize data. Op
 
 
 ## Class Imbalance Handling (Identified in Exploratory Analysis)
-Through an extensive Exploratory Data Analysis (EDA), our team identified a critical challenge—the dataset exhibited a severe imbalance among sentiment labels: 
+Through an extensive Exploratory Data Analysis (EDA), our team identified a critical challenge - the dataset exhibited a severe imbalance among sentiment labels: 
 - 70% of examples were labeled as **positive**
 - 26% as **negative**
 - and only 4% as **neutral**
@@ -72,7 +72,7 @@ with autocast():
 This reduced per-run execution times to under 5 minutes, comfortably meeting the assignment constraints without compromising the quality of predictions.
 
 ### Evaluation Strategy
-Our training loop featured rigorous evaluation after each epoch on the development dataset (devdata.csv). This allowed us to perform model checkpointing—saving only the model state with the best accuracy on the dev set. Such an approach prevented overfitting, improved robustness, and ensured optimal final performance on unseen data.
+Our training loop featured rigorous evaluation after each epoch on the development dataset (devdata.csv). This allowed us to perform model checkpointing, saving only the model state with the best accuracy on the dev set. Such an approach prevented overfitting, improved robustness, and ensured optimal final performance on unseen data.
 
 
 ## Analytical Overview of Model Selection and Final Results
