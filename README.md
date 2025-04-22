@@ -1,7 +1,7 @@
-=======================
+
 NLP Assignment: Aspect-Term Polarity Classification
 CentraleSupélec – NLP Course 2025
-=======================
+
 
 Contributors:
 - Maria Kontaratou
