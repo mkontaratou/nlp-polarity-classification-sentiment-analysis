@@ -8,8 +8,6 @@ Contributors:
 - Manon Lagarde
 - Chaimae Sadoune
 
----
-
 ## Classifier Overview
 
 Our solution uses a fine-tuned transformer-based discriminative model for aspect-based sentiment classification. Specifically, we selected the `facebook/roberta-base` model from the list of allowed Huggingface pre-trained encoder-only models. The model was fine-tuned on a classification head for three sentiment labels: **positive**, **negative**, and **neutral**.
@@ -53,8 +51,8 @@ Input samples were formatted to clearly separate different parts of the sentence
 
 ```python
 text = f"{aspect} [SEP] {left} [SEP] {target} [SEP] {right}"
-This structure helps the model identify the target term, its surrounding context, and the aspect category, all of which are crucial for accurate aspect-term polarity classification.
 ```
+This structure helps the model identify the target term, its surrounding context, and the aspect category, all of which are crucial for accurate aspect-term polarity classification.
 
 ### Addressing Label Imbalance (Discovered in EDA)
 During our exploratory data analysis (EDA), we examined the label distribution in both traindata.csv and devdata.csv and found a significant imbalance:
@@ -72,8 +70,8 @@ To counter this, we computed inverse label frequency weights and normalized them
 
 ```python
 class_weights = torch.tensor([0.4755, 8.6458, 1.8787]).to(device)
-These were applied through PyTorch’s CrossEntropyLoss:
 ```
+These were applied through PyTorch’s CrossEntropyLoss:
 
 ```python
 loss_fn = nn.CrossEntropyLoss(weight=class_weights)
@@ -122,5 +120,7 @@ roberta-large       | 89.58%        | 0.64    | 651
 deberta-v3-large    | 89.31%        | 1.18    | 1072
 
 ## Requirements
+```python
 pip install transformers==4.50.3 peft==0.15.1 trl==0.16.0 datasets==3.5.0 \
 sentencepiece==0.2.0 lightning==2.5.1 ollama==0.4.7 pyrallis==0.3.1 torch==2.6.0
+```
