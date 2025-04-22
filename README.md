@@ -32,7 +32,6 @@ To mitigate this bias, we adopted a strategy of applying **inverse normalized cl
 `[0.4755, 8.6458, 1.8787]` (corresponding to positive, neutral, and negative)
 These weights were applied to the cross-entropy loss function, helping the model focus more on the minority classes without overfitting.
 
----
 
 ## Technical Overview and Model Implementation
 ### Model Choice and Initialization
