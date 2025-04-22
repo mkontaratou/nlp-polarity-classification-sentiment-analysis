@@ -54,8 +54,9 @@ Input samples were formatted to clearly separate different parts of the sentence
 ```python
 text = f"{aspect} [SEP] {left} [SEP] {target} [SEP] {right}"
 This structure helps the model identify the target term, its surrounding context, and the aspect category, all of which are crucial for accurate aspect-term polarity classification.
+```
 
-3. Addressing Label Imbalance (Discovered in EDA)
+### Addressing Label Imbalance (Discovered in EDA)
 During our exploratory data analysis (EDA), we examined the label distribution in both traindata.csv and devdata.csv and found a significant imbalance:
 
 Positive: ~70%
@@ -72,13 +73,14 @@ To counter this, we computed inverse label frequency weights and normalized them
 ```python
 class_weights = torch.tensor([0.4755, 8.6458, 1.8787]).to(device)
 These were applied through PyTorch’s CrossEntropyLoss:
-
+```
 
 ```python
 loss_fn = nn.CrossEntropyLoss(weight=class_weights)
+```
 This approach improved model sensitivity to the underrepresented neutral and negative classes.
 
-4. Training Optimization for Efficiency
+### Training Optimization for Efficiency
 To ensure training remains both accurate and efficient:
 
 Batch size: 16
@@ -102,9 +104,10 @@ Reduced memory usage
 with autocast():
     outputs = self.model(input_ids, attention_mask=attn_mask)
     loss = loss_fn(outputs.logits, labels) / self.gradient_accumulation_steps
+```
 This allowed us to stay within the ~4.5-minute window per run, without compromising accuracy.
 
-5. Evaluation Strategy
+### Evaluation Strategy
 After each epoch, the model was evaluated on the development set. The best-performing model across epochs (based on dev accuracy) was retained for final predictions.
 
 This mechanism avoided overfitting and ensured we didn't rely on a specific epoch, making the system more robust.
