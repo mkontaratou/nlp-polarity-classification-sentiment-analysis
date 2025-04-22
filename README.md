@@ -40,11 +40,12 @@ We implemented a transformer-based classifier using the facebook/roberta-base mo
 
 Initialization:
 
-```markdown
+
 ```python
 self.model_name = 'roberta-base'
 self.tokenizer = RobertaTokenizer.from_pretrained(self.model_name)
 self.model = RobertaForSequenceClassification.from_pretrained(self.model_name, num_labels=3)
+`
 
 ### Preprocessing Strategy
 Input samples were formatted to clearly separate different parts of the sentence:
