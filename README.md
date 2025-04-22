@@ -1,5 +1,5 @@
 
-NLP Assignment: Aspect-Term Polarity Classification
+# NLP Assignment: Aspect-Term Polarity Classification
 CentraleSupélec – NLP Course 2025
 
 
@@ -10,7 +10,7 @@ Contributors:
 
 ---
 
-1. CLASSIFIER OVERVIEW
+## CLASSIFIER OVERVIEW
 
 Our solution uses a fine-tuned transformer-based discriminative model for aspect-based sentiment classification. Specifically, we selected the `facebook/roberta-base` model from the list of allowed Huggingface pre-trained encoder-only models. The model was fine-tuned on a classification head for three sentiment labels: **positive**, **negative**, and **neutral**.
 
@@ -22,7 +22,7 @@ The tokenizer and model were loaded using the Huggingface `transformers` library
 
 ---
 
-2. CLASS IMBALANCE HANDLING
+## CLASS IMBALANCE HANDLING
 
 During the Exploratory Data Analysis (EDA), we observed **a significant imbalance** in label distribution:  
 - 70% of examples were labeled as **positive**,  
@@ -35,7 +35,7 @@ These weights were applied to the cross-entropy loss function, helping the model
 
 ---
 
-3. IMPLEMENTATION DETAILS
+## IMPLEMENTATION DETAILS
 
 We used the following configuration for our final model (`facebook/roberta-base`):
 
