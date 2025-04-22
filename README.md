@@ -40,15 +40,17 @@ We implemented a transformer-based classifier using the facebook/roberta-base mo
 
 Initialization:
 
-```bash
+
+```python
 self.model_name = 'roberta-base'
 self.tokenizer = RobertaTokenizer.from_pretrained(self.model_name)
-self.model = RobertaForSequenceClassification.from_pretrained(self.model_name, num_labels=3)` 
+self.model = RobertaForSequenceClassification.from_pretrained(self.model_name, num_labels=3)
 
 2. Preprocessing Strategy
 Input samples were formatted to clearly separate different parts of the sentence:
 
-```bash
+
+```python
 text = f"{aspect} [SEP] {left} [SEP] {target} [SEP] {right}"
 This structure helps the model identify the target term, its surrounding context, and the aspect category, all of which are crucial for accurate aspect-term polarity classification.
 
@@ -65,11 +67,13 @@ This imbalance would bias the model toward predicting the majority class, thus h
 
 To counter this, we computed inverse label frequency weights and normalized them to avoid over-scaling. The weights used were:
 
-```bash
+
+```python
 class_weights = torch.tensor([0.4755, 8.6458, 1.8787]).to(device)
 These were applied through PyTorch’s CrossEntropyLoss:
 
-```bash
+
+```python
 loss_fn = nn.CrossEntropyLoss(weight=class_weights)
 This approach improved model sensitivity to the underrepresented neutral and negative classes.
 
@@ -93,7 +97,7 @@ Faster computation
 
 Reduced memory usage
 
-```bash
+```python
 with autocast():
     outputs = self.model(input_ids, attention_mask=attn_mask)
     loss = loss_fn(outputs.logits, labels) / self.gradient_accumulation_steps
