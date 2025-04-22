@@ -35,18 +35,18 @@ These weights were applied to the cross-entropy loss function, helping the model
 ---
 
 ## Technical Overview and Model Implementation
-1. Model Choice and Initialization
+### Model Choice and Initialization
 We implemented a transformer-based classifier using the facebook/roberta-base model from the Hugging Face library, which is part of the authorized set of encoder-only models. It was selected because it offers a favorable balance between accuracy and execution speed, making it suitable for the evaluation environment’s constraints (e.g., <14GB GPU memory, max ~5 mins execution per run).
 
 Initialization:
 
-
+```markdown
 ```python
 self.model_name = 'roberta-base'
 self.tokenizer = RobertaTokenizer.from_pretrained(self.model_name)
 self.model = RobertaForSequenceClassification.from_pretrained(self.model_name, num_labels=3)
 
-2. Preprocessing Strategy
+### Preprocessing Strategy
 Input samples were formatted to clearly separate different parts of the sentence:
 
 
